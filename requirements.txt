@@ -1,0 +1,8 @@
+pandas
+sentence-transformers
+torch
+torchvision
+transformers
+pillow
+flask
+opencv-python
