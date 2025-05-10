@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo E-commerce with AI Assistant</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        #assistant { border: 1px solid #ccc; padding: 20px; width: 300px; position: fixed; right: 20px; top: 20px; }
+        #response { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Our E-commerce Store</h1>
+    <p>Browse products or use the assistant on the right.</p>
+
+    <div id="assistant">
+        <h3>AI Shopping Assistant</h3>
+        <form id="assistant-form" enctype="multipart/form-data">
+            <input type="text" name="query" placeholder="Ask me anything..." style="width: 100%;">
+            <input type="file" name="image" accept="image/*" style="margin-top: 10px;">
+            <button type="submit" style="margin-top: 10px;">Submit</button>
+        </form>
+        <div id="response"></div>
+    </div>
+
+    <script>
+        document.getElementById('assistant-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const response = await fetch('/assistant', {
+                method: 'POST',
+                body: formData
+            });
+            const result = await response.text();
+            document.getElementById('response').innerHTML = result;
+        });
+    </script>
+</body>
+</html>
